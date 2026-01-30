@@ -1,9 +1,9 @@
 """
-ComfyUI Nano Banana Extension
-Three nodes for Gemini image generation:
-- 🍌 Nano Banana Text → Image: Generate images from text
-- 🖼️ Nano Banana Image → Image: Edit/transform existing images  
-- 🍌 Nano Banana Batch: Multiple prompts → multiple images
+ComfyUI-BananaForge
+Gemini-Powered Image Generation for ComfyUI
+- 🍌 BananaForge Text → Image: Generate images from text
+- 🖼️ BananaForge Image → Image: Edit/transform existing images  
+- 🍌 BananaForge Batch: Multiple prompts → multiple images
 """
 
 from typing_extensions import override
@@ -14,8 +14,8 @@ from .gemini_img2img_node import GeminiImg2ImgNode
 from .gemini_batch_node import GeminiBatchNode
 
 
-class CustomImageAPIExtension(ComfyExtension):
-    """Extension class for Nano Banana nodes."""
+class BananaForgeExtension(ComfyExtension):
+    """Extension class for BananaForge nodes."""
     
     @override
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
@@ -26,22 +26,22 @@ class CustomImageAPIExtension(ComfyExtension):
         ]
 
 
-async def comfy_entrypoint() -> CustomImageAPIExtension:
+async def comfy_entrypoint() -> BananaForgeExtension:
     """ComfyUI calls this to load the extension and its nodes."""
-    return CustomImageAPIExtension()
+    return BananaForgeExtension()
 
 
 # Legacy support for older ComfyUI versions
 NODE_CLASS_MAPPINGS = {
-    "NanoBananaText2Img": GeminiText2ImgNode,
-    "NanoBananaImg2Img": GeminiImg2ImgNode,
-    "NanoBananaBatch": GeminiBatchNode,
+    "BananaForgeText2Img": GeminiText2ImgNode,
+    "BananaForgeImg2Img": GeminiImg2ImgNode,
+    "BananaForgeBatch": GeminiBatchNode,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "NanoBananaText2Img": "🍌 Nano Banana Text → Image",
-    "NanoBananaImg2Img": "🖼️ Nano Banana Image → Image",
-    "NanoBananaBatch": "🍌 Nano Banana Batch (Multi-Prompt)",
+    "BananaForgeText2Img": "🍌 BananaForge Text → Image",
+    "BananaForgeImg2Img": "🖼️ BananaForge Image → Image",
+    "BananaForgeBatch": "🍌 BananaForge Batch (Multi-Prompt)",
 }
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS', 'comfy_entrypoint']

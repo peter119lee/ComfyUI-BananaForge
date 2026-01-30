@@ -55,9 +55,9 @@ class GeminiBatchNode(comfy_io.ComfyNode):
     def define_schema(cls) -> comfy_io.Schema:
         return comfy_io.Schema(
             node_id="NanoBananaBatch",
-            display_name="🍌 Nano Banana Batch (Multi-Prompt)",
+            display_name="🍌 BananaForge Batch (Multi-Prompt)",
             description="Generate multiple images from multiple prompts (one per line)",
-            category="Nano Banana",
+            category="Banana Forge",
             inputs=[
                 # API Configuration
                 comfy_io.String.Input(

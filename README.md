@@ -1,13 +1,15 @@
-# 🍌 ComfyUI Nano Banana
+# 🍌 ComfyUI-BananaForge
 
 > **Gemini-Powered Image Generation for ComfyUI**  
 > Text-to-Image, Image-to-Image, and Batch Processing
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## ✨ Features
 
-- � **Text → Image**: Generate images from text prompts
+- 🎨 **Text → Image**: Generate images from text prompts
 - 🖼️ **Image → Image**: Edit, transform, and style transfer
-- � **Batch Processing**: Multiple prompts → multiple images
+- 📦 **Batch Processing**: Multiple prompts → multiple images
 - ⏱️ **Rate Limit Handling**: Built-in wait timers
 - 🔑 **Flexible API Config**: Direct key or .env file
 
@@ -16,13 +18,13 @@
 ## 📥 Installation
 
 ### ComfyUI Manager (Recommended)
-Search for **"Nano Banana"** in ComfyUI Manager and install.
+Search for **"BananaForge"** in ComfyUI Manager and install.
 
 ### Manual Installation
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/YOUR_USERNAME/ComfyUI_Nano_Banana.git
-pip install -r ComfyUI_Nano_Banana/requirements.txt
+git clone https://github.com/YOUR_USERNAME/ComfyUI-BananaForge.git
+pip install -r ComfyUI-BananaForge/requirements.txt
 ```
 
 Restart ComfyUI after installation.
@@ -32,7 +34,7 @@ Restart ComfyUI after installation.
 ## 🚀 Quick Start
 
 1. **Get an API Key** from [Google AI Studio](https://aistudio.google.com/apikey)
-2. Find nodes under **"Nano Banana"** category in ComfyUI
+2. Find nodes under **"Banana Forge"** category in ComfyUI
 3. Paste your API key
 4. Enter a prompt and run!
 
@@ -40,7 +42,7 @@ Restart ComfyUI after installation.
 
 ## 📋 Nodes Overview
 
-### 🍌 Nano Banana Text → Image
+### 🍌 BananaForge Text → Image
 
 **Purpose**: Generate NEW images from text descriptions.
 
@@ -57,7 +59,7 @@ Restart ComfyUI after installation.
 
 ---
 
-### 🖼️ Nano Banana Image → Image
+### 🖼️ BananaForge Image → Image
 
 **Purpose**: Edit or transform existing images.
 
@@ -78,7 +80,7 @@ Restart ComfyUI after installation.
 
 ---
 
-### 🍌 Nano Banana Batch (Multi-Prompt)
+### 🍌 BananaForge Batch
 
 **Purpose**: Generate multiple images from multiple prompts.
 
@@ -122,7 +124,7 @@ Set `use_env_file` to `yes` in the node.
 
 ---
 
-## 🎯 Models
+## 🎯 Supported Models
 
 | Model | Max Images | Sizes | Notes |
 |-------|------------|-------|-------|
@@ -168,4 +170,3 @@ MIT License
 
 - Built for [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 - Powered by [Google Gemini API](https://ai.google.dev/)
-- Inspired by [ru4ls/ComfyUI_Nano_Banana](https://github.com/ru4ls/ComfyUI_Nano_Banana)

@@ -53,9 +53,9 @@ class GeminiText2ImgNode(comfy_io.ComfyNode):
     def define_schema(cls) -> comfy_io.Schema:
         return comfy_io.Schema(
             node_id="NanoBananaText2Img",
-            display_name="🍌 Nano Banana Text → Image",
+            display_name="🍌 BananaForge Text → Image",
             description="Generate NEW images from text prompts",
-            category="Nano Banana",
+            category="Banana Forge",
             inputs=[
                 # API Configuration
                 comfy_io.String.Input(

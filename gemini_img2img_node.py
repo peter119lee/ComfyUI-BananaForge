@@ -54,9 +54,9 @@ class GeminiImg2ImgNode(comfy_io.ComfyNode):
     def define_schema(cls) -> comfy_io.Schema:
         return comfy_io.Schema(
             node_id="NanoBananaImg2Img",
-            display_name="🖼️ Nano Banana Image → Image",
+            display_name="🖼️ BananaForge Image → Image",
             description="Edit/transform existing images (auto-matches input aspect ratio)",
-            category="Nano Banana",
+            category="Banana Forge",
             inputs=[
                 # API Configuration
                 comfy_io.String.Input(

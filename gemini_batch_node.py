@@ -1,5 +1,5 @@
 """
-ComfyUI Nano Banana Batch Node
+ComfyUI BananaForge Batch Node
 Process multiple prompts at once, generating one image per prompt.
 Supports both text-to-image and image-to-image modes.
 """

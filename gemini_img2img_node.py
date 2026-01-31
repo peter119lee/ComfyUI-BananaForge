@@ -1,5 +1,5 @@
 """
-ComfyUI Nano Banana Image-to-Image Node
+ComfyUI BananaForge Image-to-Image Node
 Edit/transform images using Gemini-compatible APIs.
 """
 

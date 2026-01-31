@@ -1,5 +1,5 @@
 """
-ComfyUI Nano Banana Text-to-Image Node
+ComfyUI BananaForge Text-to-Image Node
 Generate images from text prompts using Gemini-compatible APIs.
 """
 

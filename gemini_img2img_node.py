@@ -53,7 +53,7 @@ class GeminiImg2ImgNode(comfy_io.ComfyNode):
     @classmethod
     def define_schema(cls) -> comfy_io.Schema:
         return comfy_io.Schema(
-            node_id="NanoBananaImg2Img",
+            node_id="BananaForgeImg2Img",
             display_name="🖼️ BananaForge Image → Image",
             description="Edit/transform existing images (auto-matches input aspect ratio)",
             category="Banana Forge",

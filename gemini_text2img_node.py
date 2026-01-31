@@ -52,7 +52,7 @@ class GeminiText2ImgNode(comfy_io.ComfyNode):
     @classmethod
     def define_schema(cls) -> comfy_io.Schema:
         return comfy_io.Schema(
-            node_id="NanoBananaText2Img",
+            node_id="BananaForgeText2Img",
             display_name="🍌 BananaForge Text → Image",
             description="Generate NEW images from text prompts",
             category="Banana Forge",

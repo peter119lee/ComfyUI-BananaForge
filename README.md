@@ -23,7 +23,7 @@ Search for **"BananaForge"** in ComfyUI Manager and install.
 ### Manual Installation
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/YOUR_USERNAME/ComfyUI-BananaForge.git
+git clone https://github.com/peter119lee/ComfyUI-BananaForge.git
 pip install -r ComfyUI-BananaForge/requirements.txt
 ```
 

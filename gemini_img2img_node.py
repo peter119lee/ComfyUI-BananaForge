@@ -267,51 +267,64 @@ class GeminiImg2ImgNode(comfy_io.ComfyNode):
         return base64.b64encode(buffer.getvalue()).decode('utf-8')
     
     @classmethod
-    def _call_api(cls, endpoint: str, api_key: str, payload: dict) -> dict:
-        """Call the Gemini API."""
+    def _call_api(cls, endpoint: str, api_key: str, payload: dict, max_retries: int = 3) -> dict:
+        """Call the Gemini API with retry logic."""
         headers = {"Content-Type": "application/json", "x-goog-api-key": api_key}
         data = json.dumps(payload).encode('utf-8')
-        request = urllib.request.Request(endpoint, data=data, headers=headers, method='POST')
         
-        try:
-            with urllib.request.urlopen(request, timeout=300) as response:
-                response_data = json.loads(response.read().decode('utf-8'))
-                result = {"image": None}
-                
-                if 'candidates' not in response_data or len(response_data['candidates']) == 0:
-                    if 'promptFeedback' in response_data:
-                        raise ValueError(f"❌ Content blocked: {response_data['promptFeedback'].get('blockReason', 'Unknown')}")
-                    raise ValueError(f"❌ No candidates in response")
-                
-                candidate = response_data['candidates'][0]
-                if candidate.get('finishReason') == 'SAFETY':
-                    raise ValueError("❌ Content blocked by safety filters")
-                
-                if 'content' not in candidate or 'parts' not in candidate['content']:
-                    raise ValueError("❌ No content in response")
-                
-                for part in candidate['content']['parts']:
-                    if 'inlineData' in part and 'data' in part['inlineData']:
-                        result["image"] = part['inlineData']['data']
-                        break
-                    elif 'text' in part:
-                        # Check for image URL in markdown
-                        text = part['text']
-                        match = re.search(r'!\[.*?\]\((https?://[^\s\)]+)\)', text)
-                        if match:
-                            result["image"] = cls._download_image(match.group(1))
+        last_error = None
+        for attempt in range(max_retries):
+            try:
+                request = urllib.request.Request(endpoint, data=data, headers=headers, method='POST')
+                with urllib.request.urlopen(request, timeout=300) as response:
+                    response_data = json.loads(response.read().decode('utf-8'))
+                    result = {"image": None}
+                    
+                    if 'candidates' not in response_data or len(response_data['candidates']) == 0:
+                        if 'promptFeedback' in response_data:
+                            raise ValueError(f"❌ Content blocked: {response_data['promptFeedback'].get('blockReason', 'Unknown')}")
+                        raise ValueError(f"❌ No candidates in response")
+                    
+                    candidate = response_data['candidates'][0]
+                    if candidate.get('finishReason') == 'SAFETY':
+                        raise ValueError("❌ Content blocked by safety filters")
+                    
+                    if 'content' not in candidate or 'parts' not in candidate['content']:
+                        raise ValueError("❌ No content in response")
+                    
+                    for part in candidate['content']['parts']:
+                        if 'inlineData' in part and 'data' in part['inlineData']:
+                            result["image"] = part['inlineData']['data']
                             break
-                
-                if result["image"] is None:
-                    raise ValueError("❌ No image in response")
-                
-                return result
-                
-        except urllib.error.HTTPError as e:
-            error_msg = e.read().decode('utf-8') if e.fp else str(e)
-            raise ValueError(f"❌ API Error ({e.code}): {error_msg[:300]}")
-        except urllib.error.URLError as e:
-            raise ValueError(f"❌ Connection error: {str(e.reason)}")
+                        elif 'text' in part:
+                            # Check for image URL in markdown
+                            text = part['text']
+                            match = re.search(r'!\[.*?\]\((https?://[^\s\)]+)\)', text)
+                            if match:
+                                result["image"] = cls._download_image(match.group(1))
+                                break
+                    
+                    if result["image"] is None:
+                        raise ValueError("❌ No image in response")
+                    
+                    return result
+                    
+            except urllib.error.HTTPError as e:
+                error_msg = e.read().decode('utf-8') if e.fp else str(e)
+                raise ValueError(f"❌ API Error ({e.code}): {error_msg[:300]}")
+            except urllib.error.URLError as e:
+                last_error = f"Connection error: {str(e.reason)}"
+                print(f"🖼️ [Image→Image] Retry {attempt + 1}/{max_retries}: {last_error}")
+                if attempt < max_retries - 1:
+                    time.sleep(2 ** attempt)  # Exponential backoff: 1s, 2s, 4s
+            except Exception as e:
+                # Catch RemoteDisconnected and other transient errors
+                last_error = str(e)
+                print(f"🖼️ [Image→Image] Retry {attempt + 1}/{max_retries}: {last_error}")
+                if attempt < max_retries - 1:
+                    time.sleep(2 ** attempt)
+        
+        raise ValueError(f"❌ Failed after {max_retries} attempts: {last_error}")
     
     @classmethod
     def _download_image(cls, url: str) -> str:

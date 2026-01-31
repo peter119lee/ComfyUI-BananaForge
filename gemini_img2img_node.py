@@ -169,19 +169,22 @@ class GeminiImg2ImgNode(comfy_io.ComfyNode):
             print(f"🖼️ [Image→Image] Waiting {wait_seconds}s...")
             time.sleep(wait_seconds)
         
-        # Load from .env if requested
+        # Load from .env if requested (always override when enabled)
         if use_env_file == "yes":
             env_vars = load_env_file()
-            if not api_key or not api_key.strip():
-                api_key = env_vars.get("API_KEY", env_vars.get("GEMINI_API_KEY", ""))
-            if not api_url or api_url == "https://generativelanguage.googleapis.com/v1beta":
-                api_url = env_vars.get("API_URL", env_vars.get("GEMINI_API_URL", api_url))
+            # Always use .env values if they exist
+            env_api_key = env_vars.get("API_KEY", env_vars.get("GEMINI_API_KEY", ""))
+            env_api_url = env_vars.get("API_URL", env_vars.get("GEMINI_API_URL", ""))
+            if env_api_key:
+                api_key = env_api_key
+            if env_api_url:
+                api_url = env_api_url
         
         # Validate inputs
         if not api_url or not api_url.strip():
-            raise ValueError("❌ API URL cannot be empty.")
+            raise ValueError("❌ API URL cannot be empty. Set it in the node or .env file.")
         if not api_key or not api_key.strip():
-            raise ValueError("❌ API key cannot be empty.")
+            raise ValueError("❌ API key cannot be empty. Set it in the node or .env file.")
         if not model_name or not model_name.strip():
             raise ValueError("❌ Model name cannot be empty.")
         if not prompt or not prompt.strip():

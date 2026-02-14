@@ -1,8 +1,8 @@
 [project]
 name = "bananaforge"
-description = "Gemini-powered image generation for ComfyUI supporting text-to-image, image-to-image, and batch processing with flexible API configuration. (Description by CC)"
-version = "1.0.2"
-license = {file = "LICENSE"} 
+description = "Gemini-powered image generation for ComfyUI supporting text-to-image, image-to-image, and batch processing with flexible API configuration."
+version = "1.0.3"
+license = "MIT"
 # classifiers = [
 #     # For OS-independent nodes (works on all operating systems)
 #     "Operating System :: OS Independent",

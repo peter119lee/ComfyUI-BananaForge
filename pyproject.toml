@@ -20,7 +20,7 @@ license = {file = "LICENSE"}
 #     "Environment :: GPU :: Apple Metal",    # Apple Metal support
 # ]
 
-dependencies = ["# No additional dependencies required beyond ComfyUI's built-in packages", "# This node uses only standard library packages:", "# - urllib.request (standard library)", "# - json (standard library)", "# - base64 (standard library)", "# - io (standard library)", "#", "# And packages already included with ComfyUI:", "# - torch", "# - numpy", "# - Pillow (PIL)"]
+dependencies = []
 
 [project.urls]
 Repository = "https://github.com/peter119lee/ComfyUI-BananaForge"

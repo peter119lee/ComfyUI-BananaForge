@@ -29,7 +29,7 @@ Documentation = "https://github.com/peter119lee/ComfyUI-BananaForge/wiki"
 "Bug Tracker" = "https://github.com/peter119lee/ComfyUI-BananaForge/issues"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "peter119lee"
 DisplayName = "ComfyUI-BananaForge"
 Icon = ""
 includes = [] 

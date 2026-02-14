@@ -1,0 +1,37 @@
+[project]
+name = "bananaforge"
+description = "Gemini-powered image generation for ComfyUI supporting text-to-image, image-to-image, and batch processing with flexible API configuration. (Description by CC)"
+version = "1.0.0"
+license = {file = "LICENSE"} 
+# classifiers = [
+#     # For OS-independent nodes (works on all operating systems)
+#     "Operating System :: OS Independent",
+#
+#     # OR for OS-specific nodes, specify the supported systems:
+#     "Operating System :: Microsoft :: Windows",  # Windows specific
+#     "Operating System :: POSIX :: Linux",  # Linux specific
+#     "Operating System :: MacOS",  # macOS specific
+#
+#     # GPU Accelerator support. Pick the ones that are supported by your extension.
+#     "Environment :: GPU :: NVIDIA CUDA",    # NVIDIA CUDA support
+#     "Environment :: GPU :: AMD ROCm",       # AMD ROCm support
+#     "Environment :: GPU :: Intel Arc",      # Intel Arc support
+#     "Environment :: NPU :: Huawei Ascend",  # Huawei Ascend support
+#     "Environment :: GPU :: Apple Metal",    # Apple Metal support
+# ]
+
+dependencies = ["# No additional dependencies required beyond ComfyUI's built-in packages", "# This node uses only standard library packages:", "# - urllib.request (standard library)", "# - json (standard library)", "# - base64 (standard library)", "# - io (standard library)", "#", "# And packages already included with ComfyUI:", "# - torch", "# - numpy", "# - Pillow (PIL)"]
+
+[project.urls]
+Repository = "https://github.com/peter119lee/ComfyUI-BananaForge"
+#  Used by Comfy Registry https://registry.comfy.org
+Documentation = "https://github.com/peter119lee/ComfyUI-BananaForge/wiki"
+"Bug Tracker" = "https://github.com/peter119lee/ComfyUI-BananaForge/issues"
+
+[tool.comfy]
+PublisherId = "peter119lee"
+DisplayName = "ComfyUI-BananaForge"
+Icon = ""
+includes = [] 
+# "requires-comfyui" = ">=1.0.0"  # ComfyUI version compatibility
+
